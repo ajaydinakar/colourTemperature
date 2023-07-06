@@ -1,0 +1,28 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPattern": "/json\\?lat=.*&lng=.*"
+  },
+  "response": {
+    "status": 200,
+    "jsonBody":
+    {
+      "results": {
+        "sunrise": "9:38:10 AM",
+        "sunset": "1:04:44 AM",
+        "solar_noon": "5:21:27 PM",
+        "day_length": "15:26:34",
+        "civil_twilight_begin": "9:04:09 AM",
+        "civil_twilight_end": "1:38:45 AM",
+        "nautical_twilight_begin": "8:17:29 AM",
+        "nautical_twilight_end": "2:25:25 AM",
+        "astronomical_twilight_begin": "7:19:05 AM",
+        "astronomical_twilight_end": "3:23:49 AM"
+      },
+      "status": "OK"
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

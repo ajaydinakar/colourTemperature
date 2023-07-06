@@ -1,0 +1,5 @@
+# this url is resolved based on wiremock container host and the port on which the app
+  #running in container running
+baseurl: http://sunrise-sunset-api:8080/json
+
+

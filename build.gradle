@@ -1,0 +1,68 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.7.13'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+}
+
+group = 'com.ajay'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '1.8'
+}
+
+repositories {
+	mavenCentral()
+}
+
+configurations {
+	integration_testImplementation.extendsFrom(testImplementation)
+	integration_testRuntimeOnly.extendsFrom(testRuntimeOnly)
+}
+sourceSets {
+	integration_test {
+		java {
+			compileClasspath += main.output + test.output
+			runtimeClasspath += main.output + test.output
+		}
+	}
+}
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.projectlombok:lombok:1.18.26'
+	implementation 'com.epages:wiremock-spring-boot-starter:0.8.0'
+	testImplementation 'io.github.ricall.junit5-wiremock:junit5-wiremock:2.0.0'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	integration_testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	compileOnly 'org.projectlombok:lombok:1.18.22'
+	annotationProcessor 'org.projectlombok:lombok:1.18.22'
+	integration_testImplementation 'org.junit.jupiter:junit-jupiter:5.7.1'
+	integration_testImplementation 'org.junit.platform:junit-platform-launcher'
+	integration_testImplementation("org.junit.vintage:junit-vintage-engine:5.8.2")
+	integration_testImplementation group: 'com.github.tomakehurst', name: 'wiremock', version: '2.27.2', ext: 'pom'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+task integrationTest(type: Test) {
+	useJUnitPlatform()
+	description = "Run integration tests"
+	group = "verification"
+	testClassesDirs = sourceSets.integration_test.output.classesDirs
+	classpath = sourceSets.integration_test.runtimeClasspath
+}
+
+
+
+
+
+
+
+
+
+
+
+

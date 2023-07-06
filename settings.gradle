@@ -1,0 +1,3 @@
+rootProject.name = 'ColourTemperature'
+include 'integrationTest'
+

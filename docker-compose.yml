@@ -1,0 +1,27 @@
+version: '3'
+services:
+  colourtemperature-api:
+    container_name: colourtemp-api
+    hostname: colourtemp-api
+    build: .
+    image: ajaysapps/colourtemp
+    ports:
+      - 8079:8079
+    networks:
+      - colour-tempereature
+    volumes:
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/localtime:/etc/localtime:ro"
+  sunrise-sunset-api-mock:
+    image: wiremock/wiremock:2.32.0
+    container_name: sunrise-sunset-api-mock
+    hostname: sunrise-sunset-api
+    volumes:
+      - ./wiremock-dev:/home/wiremock
+    ports:
+      - 8383:8080
+    networks:
+      - colour-tempereature
+networks:
+  colour-tempereature:
+    driver: bridge
