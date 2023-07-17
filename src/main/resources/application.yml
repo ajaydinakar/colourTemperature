@@ -2,4 +2,4 @@ server:
   port: 8079
 spring:
   profiles:
-    active : dev #  change this to dev to test using mock api from wiremock container
+    active : qa #  change this to dev to test using mock api from wiremock container

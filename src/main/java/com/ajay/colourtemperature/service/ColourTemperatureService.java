@@ -4,6 +4,7 @@ import com.ajay.colourtemperature.model.SunApiResponse;
 import com.ajay.colourtemperature.model.SunPositionDetais;
 import com.ajay.colourtemperature.util.TemperatureUtility;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -18,6 +19,9 @@ import java.text.ParseException;
 public class ColourTemperatureService {
 
     private RestTemplate restTemplate;
+
+    @Autowired
+    TemperatureUtility utility;
     @Value("${baseurl}")
     String baseUrl;
 
@@ -32,7 +36,6 @@ public class ColourTemperatureService {
         log.info("url called is  {}",url);
         SunApiResponse response = restTemplate.getForObject(url.toString(), SunApiResponse.class);
         SunPositionDetais detais = response.getResults();
-        TemperatureUtility utility = new TemperatureUtility();
         long temperature = utility.getColourTemperature(detais.getSunrise(), detais.getSunset(), detais.getAstronomical_twilight_begin(), detais.getAstronomical_twilight_end());
         return temperature;
     }
