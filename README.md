@@ -3,7 +3,7 @@
 
 ColourTemperature microservice is a application , which determines colour temperature of the screen according to current position of the sun. This will Calculate temperature in Kelvins according to below figure
 
-we have three regions of colour tempereature
+we have three regions of colour tempereatures peak or the day and temperatures before twilight and after twilight which are constant and the gradually increasing and decreasing of the time between these two 
 
 ![Alt text](https://sunrise-sunset.org/graph.svg)
 
